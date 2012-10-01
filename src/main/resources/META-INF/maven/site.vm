@@ -376,23 +376,23 @@
     #if ( ( $datePosition.equalsIgnoreCase( "right" ) ) || ( $datePosition.equalsIgnoreCase( "bottom" ) ) )
       $prefix <span id="publishDate">$i18n.getString( "site-renderer", $locale, "template.lastpublished" ): $dateValue</span>
       #if ( $versionPosition.equalsIgnoreCase( $position ) )
-        &nbsp;| <span id="projectVersion">$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}</span>
+        &nbsp;|&nbsp;<span id="projectVersion">$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}</span>
       #end
     #elseif ( ( $datePosition.equalsIgnoreCase( "navigation-bottom" ) ) || ( $datePosition.equalsIgnoreCase( "navigation-top" ) ) )
       <div id="lastPublished">
         <span id="publishDate">$i18n.getString( "site-renderer", $locale, "template.lastpublished" ): $dateValue</span>
         #if ( $versionPosition.equalsIgnoreCase( $position ) )
-          &nbsp;| <span id="projectVersion">$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}</span>
+          &nbsp;|&nbsp;<span id="projectVersion">$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}</span>
         #end
       </div>
     #elseif ( $datePosition.equalsIgnoreCase("left") )
       <div class="xleft">
         <span id="publishDate">$i18n.getString( "site-renderer", $locale, "template.lastpublished" ): $dateValue</span>
         #if ( $versionPosition.equalsIgnoreCase( $position ) )
-          &nbsp;| <span id="projectVersion">$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}</span>
+          &nbsp;|&nbsp;<span id="projectVersion">$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}</span>
         #end
         #if ( $breadcrumbs && $breadcrumbs.size() > 0 )
-          | #breadcrumbs( $breadcrumbs )
+          &nbsp;|&nbsp;#breadcrumbs( $breadcrumbs )
         #end
       </div>
     #end
@@ -407,7 +407,7 @@
       <div class="xleft">
         <span id="projectVersion">$i18n.getString( "site-renderer", $locale, "template.version" ): ${project.version}</span>
         #if ( $breadcrumbs && $breadcrumbs.size() > 0 )
-          | #breadcrumbs( $breadcrumbs )
+         &nbsp;|&nbsp;#breadcrumbs( $breadcrumbs )
         #end
       </div>
     #end
@@ -477,8 +477,8 @@
         #set ( $title = "" )
       #end
 ##
-      <a href="$href" title="$name" class="poweredBy">
-        <img class="poweredBy" $alt src="$img" $border $width $height $title />
+      <a href="$href" title="$name">
+        <img $alt src="$img" $border $width $height $title />
       </a>
     #end
   #end
@@ -573,7 +573,7 @@
       <div id="navcolumn">
        #publishDate( "navigation-top" $decoration.publishDate $decoration.version )
        #mainMenu( $decoration.body.menus )
-       <div align="center">
+       <div id="poweredBy">
          #poweredByLogo( $decoration.poweredBy )
        </div>
        #publishDate( "navigation-bottom" $decoration.publishDate $decoration.version )
