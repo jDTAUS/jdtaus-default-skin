@@ -25,6 +25,7 @@
   <version>1.0</version>
   <packaging>jar</packaging>
   <name>jDTAUS Skins ⁑ Default Skin</name>
+  <description>Skin for the Maven Site Plugin.</description>
   <url>http://www.jdtaus.org/jdtaus-skins/jdtaus-default-skin-${project.version}</url>
   <inceptionYear>2012</inceptionYear>
 
