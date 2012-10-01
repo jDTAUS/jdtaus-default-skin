@@ -18,13 +18,11 @@
   $JDTAUS$
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jdtaus.maven.skins</groupId>
   <artifactId>jdtaus-default-skin</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
   <name>jDTAUS Skins ⁑ Default Skin</name>
   <url>http://www.jdtaus.org/jdtaus-skins/jdtaus-default-skin-${project.version}</url>
@@ -58,9 +56,9 @@
   </issueManagement>
 
   <scm>
-    <connection>scm:svn:http://svn.jdtaus.org/svnroot/jdtaus/jdtaus-skins/jdtaus-default-skin/trunk</connection>
-    <developerConnection>scm:svn:http://svn.jdtaus.org/svnroot/jdtaus/jdtaus-skins/jdtaus-default-skin/trunk</developerConnection>
-    <url>http://svn.jdtaus.org/jdtaus-skins/jdtaus-default-skin/trunk</url>
+    <connection>scm:svn:http://svn.jdtaus.org/svnroot/jdtaus/jdtaus-skins/jdtaus-default-skin/tags/jdtaus-default-skin-1.0</connection>
+    <developerConnection>scm:svn:http://svn.jdtaus.org/svnroot/jdtaus/jdtaus-skins/jdtaus-default-skin/tags/jdtaus-default-skin-1.0</developerConnection>
+    <url>http://svn.jdtaus.org/jdtaus-skins/jdtaus-default-skin/tags/jdtaus-default-skin-1.0</url>
   </scm>
 
   <build>
