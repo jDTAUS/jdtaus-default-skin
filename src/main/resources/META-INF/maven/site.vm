@@ -484,34 +484,74 @@
   #end
 #end
 ##
-#macro ( googleAnalytics $accountId )
-  #if( $accountId && $accountId != "" )
+#macro ( googleAnalytics $decorationModel )
+  #if ($decorationModel )
+    #set ( $accountId = $decorationModel.googleAnalyticsAccountId )
+    #if ( ( !$accountId || $accountId == "" )
+          && $decorationModel.custom && $decorationModel.custom.getChild( 'googleAnalyticsAccountId' )
+          && $decorationModel.custom.getChild( 'googleAnalyticsAccountId' ).getValue() )
+      #set ( $accountId = $decorationModel.custom.getChild( 'googleAnalyticsAccountId' ).getValue() )
+    #end
+    #if( $accountId )
     <!-- Google Analytics -->
     <script type="text/javascript">
-
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', '$accountId']);
       _gaq.push(['_trackPageview']);
-
       (function() {
         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
     </script>
+    #end
   #end
 #end
 ##
-#macro ( googleAdSense $client $slot )
-  #if( $client && $client != "" && $slot && $slot != "")
+#macro ( googleAdSense $decorationModel )
+  #if ( $decorationModel )
+    #set ( $client = $decorationModel.googleAdSenseClient )
+    #if ( ( !$client || $client == "" ) && $decorationModel.custom
+          && $decorationModel.custom.getChild( 'googleAdSenseClient' )
+          && $decorationModel.custom.getChild( 'googleAdSenseClient' ).getValue() )
+      #set ( $client = $decorationModel.custom.getChild( 'googleAdSenseClient' ).getValue() )
+    #end
+    #set ( $slot = $decorationModel.googleAdSenseSlot )
+    #if ( ( !$slot || $slot == "" ) && $decorationModel.custom
+          && $decorationModel.custom.getChild( 'googleAdSenseSlot' )
+          && $decorationModel.custom.getChild( 'googleAdSenseSlot' ).getValue() )
+      #set ( $slot = $decorationModel.custom.getChild( 'googleAdSenseSlot' ).getValue() )
+    #end
+    #if ( $decorationModel.custom && $decorationModel.custom.getChild( 'googleAdSenseWidth' )
+          && $decorationModel.custom.getChild( 'googleAdSenseWidth' ).getValue() )
+      #set ( $width = $decorationModel.custom.getChild( 'googleAdSenseWidth' ).getValue() )
+    #end
+    #if ( $decorationModel.custom && $decorationModel.custom.getChild( 'googleAdSenseHeight' )
+          && $decorationModel.custom.getChild( 'googleAdSenseHeight' ).getValue() )
+      #set ( $height = $decorationModel.custom.getChild( 'googleAdSenseHeight' ).getValue() )
+    #end
+    #if ( $client && $client != "" && $slot && $slot != "" && $width && $width != "" && $height && $height != "" )
     <!-- Google AdSense -->
     <script type="text/javascript">
       google_ad_client = "$client";
       google_ad_slot = "$slot";
-      google_ad_width = 728;
-      google_ad_height = 90;
+      google_ad_width = $width;
+      google_ad_height = $height;
     </script>
+    #end
+  #end
+#end
+##
+#macro ( googleAdSenseContent $decorationModel )
+  #if ( ( $decorationModel.googleAdSenseClient
+        || ( $decorationModel.custom && $decorationModel.custom.getChild( 'googleAdSenseClient' )
+           && $decorationModel.custom.getChild( 'googleAdSenseClient' ).getValue() ) )
+        && ( $decorationModel.googleAdSenseSlot
+           || ( $decorationModel.custom && $decorationModel.custom.getChild( 'googleAdSenseSlot' )
+              && $decorationModel.custom.getChild( 'googleAdSenseSlot' ).getValue() ) ) )
+        <p>
+          <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+        </p>
   #end
 #end
 ##
@@ -551,8 +591,8 @@
       #end
     #end
     $headContent
-    #googleAnalytics( $decoration.googleAnalyticsAccountId )
-    #googleAdSense( $decoration.googleAdSenseClient $decoration.googleAdSenseSlot )
+    #googleAnalytics( $decoration )
+    #googleAdSense( $decoration )
   </head>
   <body class="composite">
     <div id="banner">
@@ -581,9 +621,7 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <p>
-          <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-        </p>
+        #googleAdSenseContent( $decoration )
         $bodyContent
       </div>
     </div>
