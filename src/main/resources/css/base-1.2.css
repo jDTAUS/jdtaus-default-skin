@@ -14,7 +14,7 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *
  * $JDTAUS$
- */
+*/
 body {
   margin: 0px;
   padding: 0px;
@@ -168,4 +168,7 @@ div.clear hr{
   padding-right: 2px;
   border: 0px;
   margin: 0px;
+}
+.langnav {  
+  float: none;
 }

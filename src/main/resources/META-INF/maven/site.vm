@@ -147,7 +147,7 @@
     #set ( $currentItemHref = $PathTool.calculateLink( $item.href, $relativePath ) )
     #set ( $currentItemHref = $currentItemHref.replaceAll( '\\', '/' ) )
     #link( $currentItemHref $item.name $item.target $item.img $item.position $item.alt $item.border $item.width $item.height $item.title )
-    #if ( $links.size() > $counter ) | #end
+    #if ( $links.size() > $counter )&nbsp;|&nbsp;#end
   #end
 #end
 ##
@@ -560,7 +560,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=${outputEncoding}" />
     <title>$title</title>
     <style type="text/css" media="all">
-      @import url("$relativePath/css/base-1.0.css");
+      @import url("$relativePath/css/base-1.2.css");
       @import url("$relativePath/css/theme-1.0.css");
       @import url("$relativePath/css/site.css");
     </style>
@@ -604,7 +604,7 @@
     </div>
     <div id="breadcrumbs">
       #publishDate( "left" $decoration.publishDate $decoration.version )
-      <div class="xright">#links( $decoration.body.links )#publishDate( "right" $decoration.publishDate $decoration.version )</div>
+      <div class="xright">#links( $decoration.body.links )#publishDate( "right" $decoration.publishDate $decoration.version )#if( $decoration.body.links && !$decoration.body.links.empty )&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#end$LanguagesTool.languagesNavigationSelect( $decoration, $locale, $relativePath, $currentFileName )</div>
       <div class="clear">
         <hr/>
       </div>
